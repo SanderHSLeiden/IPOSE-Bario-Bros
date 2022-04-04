@@ -1,1 +1,17 @@
-/.idea/
+# IDEA #
+.idea/
+*.iml
+out/
+
+# Maven #
+dependency-reduced-pom.xml
+target/
+
+# Gradle #
+.gradle/
+build/
+
+# logs #
+*.log
+logs/
+system/
