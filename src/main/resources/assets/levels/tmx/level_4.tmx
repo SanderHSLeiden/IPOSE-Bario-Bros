@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="270" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
- <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="924" columns="33">
-  <image source="../../Downloads/tileset.png" width="528" height="448"/>
+ <tileset firstgid="1" name="SMB" tilewidth="16" tileheight="16" tilecount="924" columns="33">
+  <image source="tileset.png" width="528" height="448"/>
  </tileset>
  <layer name="Tilelaag 1" width="270" height="20" offsetx="-24" offsety="28">
   <data encoding="csv">
