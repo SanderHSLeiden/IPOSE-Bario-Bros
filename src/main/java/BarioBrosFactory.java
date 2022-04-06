@@ -22,11 +22,21 @@ public class BarioBrosFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("wall")
+    public Entity newWall(SpawnData data) {
+        return entityBuilder(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .type(EntityType.WALL)
+                .build();
+    }
+
     @Spawns("questionmark")
     public Entity newQuestionBlock(SpawnData data) {
         return entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .type(EntityType.QUESTIONMARK)
                 .build();
     }
 
@@ -35,6 +45,7 @@ public class BarioBrosFactory implements EntityFactory {
         return entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .type(EntityType.FLAG)
                 .build();
     }
 
