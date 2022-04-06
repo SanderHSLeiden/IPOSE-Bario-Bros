@@ -3,14 +3,24 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.GameScene;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
+import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.input.virtual.VirtualButton;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.net.MalformedURLException;
 
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
+
 public class BarioBrosApp extends GameApplication {
+
+    Entity player;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -22,11 +32,46 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void initGame() {
-        setLevel(3);
+        FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
+
+        setLevel(1);
+
+        player = FXGL.getGameWorld().spawn("player", 50, 50);
     }
 
     @Override
-    protected void initPhysics() {}
+    protected void initInput() {
+        getInput().addAction(new UserAction("Left") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerControl.class).left();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerControl.class).stop();
+            }
+        }, KeyCode.A, VirtualButton.LEFT);
+
+        getInput().addAction(new UserAction("Right") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerControl.class).right();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerControl.class).stop();
+            }
+        }, KeyCode.D, VirtualButton.RIGHT);
+
+        getInput().addAction(new UserAction("Jump") {
+            @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerControl.class).jump();
+            }
+        }, KeyCode.W, VirtualButton.A);
+    }
 
     @Override
     protected void initUI() {}
