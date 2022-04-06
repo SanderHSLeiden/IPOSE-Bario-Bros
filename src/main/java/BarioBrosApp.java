@@ -2,6 +2,7 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.GameScene;
+import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
@@ -40,6 +41,10 @@ public class BarioBrosApp extends GameApplication {
         setLevel(3);
 
         player = FXGL.getGameWorld().spawn("player", 50, 50);
+
+        Viewport viewport = FXGL.getGameScene().getViewport();
+        viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
+        viewport.setLazy(true);
 
         System.out.println(FXGL.getGameWorld().getEntities());
     }
