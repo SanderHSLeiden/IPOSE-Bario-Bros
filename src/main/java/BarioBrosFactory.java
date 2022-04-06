@@ -4,6 +4,7 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -41,6 +42,10 @@ public class BarioBrosFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physicsComponent = new PhysicsComponent();
         physicsComponent.setBodyType(BodyType.DYNAMIC);
+        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6, 8)));
+
+        // this avoids player sticking to walls
+        physicsComponent.setFixtureDef(new FixtureDef().friction(0.0f));
 
         return entityBuilder(data)
                 .viewWithBBox(new Rectangle(16,32, Color.RED))

@@ -4,9 +4,13 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 
 public class PlayerControl extends Component {
     private PhysicsComponent physics;
+    private Boolean canJump = false;
 
-    public void onUpdate(Entity entity, double tpf) {
-
+    @Override
+    public void onAdded() {
+        physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
+            canJump = isOnGround;
+        });
     }
 
     public void left() {
@@ -18,7 +22,9 @@ public class PlayerControl extends Component {
     }
 
     public void jump() {
-        physics.setVelocityY(-400);
+        if (!canJump) return;
+
+        physics.setVelocityY(-300);
     }
 
     public void stop() {
