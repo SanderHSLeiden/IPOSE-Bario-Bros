@@ -1,33 +1,11 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
-
-public class ScoreBoard extends Application {
-
-    Button button;
-
-    public static void main(String[] args) {
-        launch(args);
+import javax.swing.*;
+class scorebard{
+    public static void main(String args[]){
+        JFrame frame = new JFrame("Bario Bros - Scoreboard");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600,500);
+        JButton button = new JButton("Highscore");
+        frame.getContentPane().add(button); // Adds Button to content pane of frame
+        frame.setVisible(true);
     }
-
-    @Override
-    public void start (Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Scoreboard");
-        button = new Button();
-        button.setText("Close");
-
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-
-        Scene scene = new Scene(layout, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-    }
-
 }
