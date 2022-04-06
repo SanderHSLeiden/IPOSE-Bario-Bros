@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="230" height="20" tilewidth="16" tileheight="16" nextobjectid="73">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="230" height="20" tilewidth="16" tileheight="16" nextobjectid="162">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="924" columns="33">
   <image source="tileset.png" width="528" height="448"/>
  </tileset>
  <layer name="Tile Layer 1" width="230" height="20">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,246,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,380,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,2,25,25,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,34,0,0,0,0,0,0,380,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,34,34,0,0,0,0,0,0,380,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -28,200 +28,71 @@
 </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="4" type="platform" x="0" y="160">
-   <polygon points="0,0 0,32 1168,32 1168,0 272,0 0,0"/>
-  </object>
-  <object id="5" type="questionmark" x="272" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="6" type="platform" x="336" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="7" type="platform" x="368" y="96">
-   <polyline points="0,0 0,16 16,16 16,0 0,0"/>
-  </object>
-  <object id="8" type="platform" x="400" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="9" type="questionmark" x="352" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="12" type="questionmark" x="384" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="13" type="questionmark" x="368" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="14" type="platform" x="544" y="128">
-   <polygon points="0,0 0,32 32,32 32,0"/>
-  </object>
-  <object id="15" type="platform" x="704" y="112">
-   <polygon points="0,0 0,48 32,48 32,0"/>
-  </object>
-  <object id="16" type="platform" x="880" y="96">
-   <polygon points="0,0 0,64 32,64 32,0"/>
-  </object>
-  <object id="17" type="platform" x="1008" y="96">
-   <polygon points="0,0 0,64 32,64 32,0"/>
-  </object>
-  <object id="18" type="platform" x="1120" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="19" type="platform" x="1200" y="160">
-   <polygon points="0,0 0,32 240,32 240,0"/>
-  </object>
-  <object id="21" type="platform" x="1328" y="32">
-   <polygon points="0,0 0,16 144,16 144,0"/>
-  </object>
-  <object id="22" type="platform" x="1280" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="23" type="platform" x="1312" y="95.5">
-   <polygon points="0,0 0,16.5 16,16.5 16,0.5"/>
-  </object>
-  <object id="24" type="questionmark" x="1296" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="25" type="platform" x="1520" y="32">
-   <polygon points="0,0 0,16 64,16 64,0"/>
-  </object>
-  <object id="26" type="questionmark" x="1584" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="27" type="platform" x="1584" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="28" type="platform" x="1680" y="96">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="29" type="platform" x="1488" y="160">
-   <polygon points="0,0 0,32 1184,32 1184,0"/>
-  </object>
-  <object id="30" type="questionmark" x="1776" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="31" type="questionmark" x="1824" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="32" type="questionmark" x="1824" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="33" type="questionmark" x="1872" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="34" type="platform" x="1952" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="35" type="platform" x="2000" y="32">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="36" type="platform" x="2112" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="37" type="platform" x="2160" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="39" type="questionmark" x="2128" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="40" type="questionmark" x="2144" y="32">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="41" type="platform" x="2128" y="96">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="42" type="platform" x="2256" y="144">
-   <polygon points="0,0 0,16 64,16 64,0"/>
-  </object>
-  <object id="43" type="platform" x="2272" y="128">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="44" type="platform" x="2288" y="112">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="45" type="platform" x="2304" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="46" type="platform" x="2352" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="47" type="platform" x="2352" y="112">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="48" type="platform" x="2352" y="128">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="49" type="platform" x="2352" y="144">
-   <polygon points="0,0 0,16 64,16 64,0"/>
-  </object>
-  <object id="50" type="platform" x="2592" y="144">
-   <polygon points="0,0 0,16 80,16 80,0"/>
-  </object>
-  <object id="51" type="platform" x="2608" y="128">
-   <polygon points="0,0 0,16 64,16 64,0"/>
-  </object>
-  <object id="52" type="platform" x="2624" y="112">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="53" type="platform" x="2640" y="96">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="54" type="platform" x="2704" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="55" type="platform" x="2704" y="112">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="56" type="platform" x="2704" y="128">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="57" type="platform" x="2704" y="144">
-   <polygon points="0,0 0,16 64,16 64,0"/>
-  </object>
-  <object id="58" type="platform" x="2704" y="160">
-   <polygon points="0,0 0,32 976,32 976,0"/>
-  </object>
-  <object id="59" type="platform" x="2848" y="128">
-   <polygon points="0,0 0,32 32,32 32,0"/>
-  </object>
-  <object id="60" type="platform" x="2944" y="96">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="61" type="platform" x="2992" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="62" type="questionmark" x="2976" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="63" type="platform" x="3120" y="144">
-   <polygon points="0,0 0,16 144,16 144,0"/>
-  </object>
-  <object id="64" type="platform" x="3136" y="128">
-   <polygon points="0,0 0,16 128,16 128,0"/>
-  </object>
-  <object id="65" type="platform" x="3152" y="112">
-   <polygon points="0,0 0,16 112,16 112,0"/>
-  </object>
-  <object id="66" type="platform" x="3168" y="96">
-   <polygon points="0,0 0,16 96,16 96,0"/>
-  </object>
-  <object id="67" type="platform" x="3184" y="80">
-   <polygon points="0,0 0,16 80,16 80,0"/>
-  </object>
-  <object id="68" type="platform" x="3200" y="64">
-   <polygon points="0,0 0,16 64,16 64,0"/>
-  </object>
-  <object id="69" type="platform" x="3216" y="48">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="70" type="platform" x="3232" y="32">
-   <polygon points="0,0 0,16 32,16 32,0"/>
-  </object>
-  <object id="71" type="platform" x="3360" y="144">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="72" type="flag" x="3360" y="144">
-   <polygon points="0,0 0,-128 16,-128 16,0"/>
-  </object>
+  <object id="76" type="platform" x="0" y="160" width="1167.67" height="32"/>
+  <object id="78" type="questionmark" x="272" y="96" width="16" height="16"/>
+  <object id="79" type="platform" x="336" y="96" width="16" height="16"/>
+  <object id="80" type="platform" x="368" y="96" width="16" height="16"/>
+  <object id="81" type="platform" x="400" y="96" width="16" height="16"/>
+  <object id="84" type="questionmark" x="352" y="96" width="16" height="16"/>
+  <object id="85" type="questionmark" x="384" y="96" height="16"/>
+  <object id="87" type="questionmark" x="384" y="96" width="16" height="16"/>
+  <object id="88" type="questionmark" x="368" y="32" width="16" height="16"/>
+  <object id="89" type="platform" x="544" y="128" width="32" height="32"/>
+  <object id="90" type="platform" x="704" y="112" width="32" height="48"/>
+  <object id="93" type="platform" x="880" y="96" width="32" height="64"/>
+  <object id="94" type="platform" x="1008" y="96" width="32" height="64"/>
+  <object id="95" type="platform" x="1120" y="96" width="16" height="16"/>
+  <object id="96" type="platform" x="1200" y="160" width="240" height="32"/>
+  <object id="97" type="platform" x="1280" y="96" width="16" height="16"/>
+  <object id="98" type="platform" x="1312" y="96" width="16" height="16"/>
+  <object id="99" type="questionmark" x="1296" y="96" width="16" height="16"/>
+  <object id="100" type="platform" x="1328" y="32" width="144" height="16"/>
+  <object id="101" type="platform" x="1520" y="32" width="64" height="16"/>
+  <object id="102" type="questionmark" x="1584" y="32" width="16" height="16"/>
+  <object id="103" type="platform" x="1584" y="96" width="16" height="16"/>
+  <object id="104" type="platform" x="1680" y="96" width="32" height="16"/>
+  <object id="107" type="platform" x="1488" y="160" width="1184" height="32"/>
+  <object id="108" type="questionmark" x="1776" y="96" width="16" height="16"/>
+  <object id="111" type="questionmark" x="1824" y="96" width="16" height="16"/>
+  <object id="112" type="questionmark" x="1824" y="32" width="16" height="16"/>
+  <object id="113" type="questionmark" x="1872" y="96" width="16" height="16"/>
+  <object id="114" type="platform" x="1952" y="96" width="16" height="16"/>
+  <object id="115" type="platform" x="2000" y="32" width="48" height="16"/>
+  <object id="116" type="platform" x="2128" y="96" width="32" height="16"/>
+  <object id="117" type="platform" x="2112" y="32" width="16" height="16"/>
+  <object id="118" type="questionmark" x="2128" y="32" width="16" height="16"/>
+  <object id="119" type="questionmark" x="2144" y="32" width="16" height="16"/>
+  <object id="121" type="platform" x="2160" y="32" width="16" height="16"/>
+  <object id="122" type="platform" x="2256" y="144" width="64" height="16"/>
+  <object id="123" type="platform" x="2272" y="128" width="48" height="16"/>
+  <object id="126" type="platform" x="2288" y="112" width="32" height="16"/>
+  <object id="127" type="platform" x="2304" y="96" width="16" height="16"/>
+  <object id="128" type="platform" x="2352" y="96" width="16" height="16"/>
+  <object id="129" type="platform" x="2352" y="112" width="32" height="16"/>
+  <object id="130" type="platform" x="2352" y="128" width="48" height="16"/>
+  <object id="131" type="platform" x="2352" y="144" width="64" height="16"/>
+  <object id="132" type="platform" x="2592" y="144" width="80" height="16"/>
+  <object id="133" type="platform" x="2608" y="128" width="64" height="16"/>
+  <object id="134" type="platform" x="2624" y="112" width="48" height="16"/>
+  <object id="135" type="platform" x="2640" y="96" width="32" height="16"/>
+  <object id="136" type="platform" x="2704" y="96" width="16" height="16"/>
+  <object id="137" type="platform" x="2704" y="112" width="32" height="16"/>
+  <object id="138" type="platform" x="2704" y="128" width="48" height="16"/>
+  <object id="139" type="platform" x="2704" y="144" width="64" height="16"/>
+  <object id="142" type="platform" x="2704" y="160" width="976" height="32"/>
+  <object id="143" type="platform" x="2848" y="128" width="32" height="32"/>
+  <object id="144" type="platform" x="2944" y="96" width="32" height="16"/>
+  <object id="145" type="questionmark" x="2976" y="96" width="16" height="16"/>
+  <object id="146" type="platform" x="2992" y="96" width="16" height="16"/>
+  <object id="149" type="platform" x="3120" y="144" width="144" height="16"/>
+  <object id="150" type="platform" x="3136" y="128" width="128" height="16"/>
+  <object id="151" type="platform" x="3152" y="112" width="112" height="16"/>
+  <object id="152" type="platform" x="3168" y="96" width="96" height="16"/>
+  <object id="154" type="platform" x="3184" y="80" width="80" height="16"/>
+  <object id="155" type="platform" x="3200" y="64" width="64" height="16"/>
+  <object id="156" type="platform" x="3216" y="48" width="48" height="16"/>
+  <object id="157" type="platform" x="3232" y="32" width="32" height="16"/>
+  <object id="158" type="platform" x="3360" y="144" width="16" height="16"/>
+  <object id="161" type="flag" x="3360" y="0" width="16" height="144"/>
  </objectgroup>
 </map>

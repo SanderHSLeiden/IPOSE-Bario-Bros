@@ -9,12 +9,17 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
+import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.HitBox;
+import com.almasb.fxgl.physics.box2d.collision.Collision;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -37,6 +42,8 @@ public class BarioBrosApp extends GameApplication {
         setLevel(1);
 
         player = FXGL.getGameWorld().spawn("player", 50, 50);
+
+        System.out.println(FXGL.getGameWorld().getEntities());
     }
 
     @Override
@@ -78,6 +85,17 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {}
+
+    @Override
+    protected void initPhysics() {
+/*        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.PLATFORM) {
+            @Override
+            protected void onCollision(Entity player, Entity platform) {
+                System.out.println("yooo");
+                player.setY(platform.getY() - 16);
+            }
+        });*/
+    }
 
     private void setLevel(int level) {
         try {
