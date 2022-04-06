@@ -4,6 +4,7 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -16,6 +17,7 @@ public class BarioBrosFactory implements EntityFactory {
         return entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .type(EntityType.PLATFORM)
                 .build();
     }
 
@@ -29,12 +31,9 @@ public class BarioBrosFactory implements EntityFactory {
 
     @Spawns("flag")
     public Entity newFinishFlag(SpawnData data) {
-        PhysicsComponent physicsComponent = new PhysicsComponent();
-        physicsComponent.setBodyType(BodyType.STATIC);
-
         return entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(physicsComponent)
+                .with(new PhysicsComponent())
                 .build();
     }
 
@@ -47,6 +46,7 @@ public class BarioBrosFactory implements EntityFactory {
                 .viewWithBBox(new Rectangle(16,32, Color.RED))
                 .with(physicsComponent)
                 .with(new PlayerControl())
+                .type(EntityType.PLAYER)
                 .build();
     }
 
