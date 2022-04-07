@@ -32,8 +32,8 @@ public class BarioBrosApp extends GameApplication {
     Level currentLevelData;
 
     String player1_name = null;
-    String player2_name = null;
-    boolean Answer1;
+
+
 
 
     @Override
@@ -96,14 +96,10 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        if (player1_name == null || player2_name == null) {
+        if (player1_name == null) {
             loginUser();
 
             return;
-        }
-        if(Answer1 == false){
-            loginUser();
-
         }
 
 
@@ -146,16 +142,6 @@ public class BarioBrosApp extends GameApplication {
     }
 
     private void loginUser() {
-
-        FXGL.getDialogService().showConfirmationBox(  "Start game", answer1 -> {
-            System.out.println("You pressed yes? " + answer1);
-            Answer1 = answer1;
-        });
-
-        FXGL.getDialogService().showInputBox("speler 2 vul je naam in:", answer -> {
-            System.out.println("You typed: "+ answer);
-            player2_name = answer;
-        });
 
         FXGL.getDialogService().showInputBox("speler 1 vul je naam in:", answer -> {
             System.out.println("You typed: "+ answer);
