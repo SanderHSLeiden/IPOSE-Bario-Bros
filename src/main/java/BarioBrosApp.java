@@ -6,20 +6,13 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
 
 import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.box2d.collision.Collision;
 import javafx.scene.input.KeyCode;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import com.almasb.fxgl.app.services.FXGLDialogService;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,22 +22,14 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 public class BarioBrosApp extends GameApplication {
 
     Entity player;
-    int score;
+    String player_name = "";
+    int player_current_score = 0;
+
     int currentLevelNumber;
     Level currentLevelData;
 
     Timer levelTimer;
-
-    String player1_name = null;
-
-
-
-
-
-    String player2_name = null;
-    boolean Answer1;
-    boolean outOfTime;
-
+    boolean outOfTime = false;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -109,24 +94,18 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        if (player1_name == null) {
+        if (player_name.isEmpty()) {
             loginUser();
 
             return;
         }
 
-
-        if (Answer1 == false) {
-            loginUser();
-
-        }
-
-
         if (player.getY() > currentLevelData.getHeight()) {
             FXGL.getGameScene().getViewport().shake(6, .2);
 
-            getGameController().startNewGame();
+            respawnPlayer();
         }
+
         if (outOfTime) {
             levelTimer.cancel();
 
@@ -160,7 +139,7 @@ public class BarioBrosApp extends GameApplication {
                                         || player.getX() + player.getWidth() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
                             )
                 ) {
-                    score+=10;
+                    player_current_score +=10;
                     unusedQuestionMark.removeFromWorld();
                 }
             }
@@ -169,7 +148,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
-                score += 100;
+                player_current_score += 100;
                 coin.removeFromWorld();
             }
         });
@@ -189,17 +168,15 @@ public class BarioBrosApp extends GameApplication {
     }
 
     private void loginUser() {
-
-        FXGL.getDialogService().showInputBox("speler 1 vul je naam in:", answer -> {
-            System.out.println("You typed: "+ answer);
-            player1_name = answer;
+        FXGL.getDialogService().showInputBox("Vul je speler naam in:", answer -> {
+            player_name = answer;
         });
-
     }
 
     private void respawnPlayer() {
         if (player != null) {
             player.removeFromWorld();
+            startTimer();
         }
 
         player = FXGL.getGameWorld().spawn("player", 50, 50);
@@ -217,8 +194,6 @@ public class BarioBrosApp extends GameApplication {
         currentLevelData = FXGL.setLevelFromMap(levelPath);
         gameScene.getViewport().setBounds(0, 0, currentLevelData.getWidth(), currentLevelData.getHeight());
         gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
-
-
     }
 
     public static void main(String[] args) {
