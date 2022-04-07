@@ -4,27 +4,14 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 
 public class PlayerControl extends Component {
     private PhysicsComponent physics;
-    private boolean decreaseJumpTimer = false;
-    private int timeToJumpLeft = 8;
+    private boolean canJump = false;
+    private int timeToJumpLeft = 0;
 
     @Override
     public void onAdded() {
         physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
-            decreaseJumpTimer = !isOnGround;
-
-            if (isOnGround) {
-                timeToJumpLeft = 8;
-            }
+            canJump = isOnGround;
         });
-    }
-
-    @Override
-    public void onUpdate(double tpf) {
-        if (decreaseJumpTimer) {
-            if (timeToJumpLeft > 0) {
-                timeToJumpLeft--;
-            }
-        }
     }
 
     public void left() {
@@ -36,10 +23,9 @@ public class PlayerControl extends Component {
     }
 
     public void jump() {
-        if (timeToJumpLeft == 0) return;
+        if (!canJump) return;
 
         physics.setVelocityY(-300);
-        timeToJumpLeft = 0;
     }
 
     public void stop() {
