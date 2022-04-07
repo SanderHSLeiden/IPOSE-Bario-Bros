@@ -2,6 +2,7 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.GameScene;
+import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -42,6 +43,8 @@ public class BarioBrosApp extends GameApplication {
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
+        settings.setSceneFactory(new SceneFactory());
+        settings.setMainMenuEnabled(true);
         settings.setHeight(720);
         settings.setTitle("Bario Bros");
         settings.setVersion("1.0");
@@ -49,12 +52,12 @@ public class BarioBrosApp extends GameApplication {
         currentLevelNumber = 1;
     }
 
+
     @Override
     protected void initGame() {
         outOfTime = false;
 
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
-
         setLevel(currentLevelNumber);
         respawnPlayer();
 
@@ -128,6 +131,7 @@ public class BarioBrosApp extends GameApplication {
         }
     }
 
+
     @Override
     protected void initPhysics() {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
@@ -181,7 +185,6 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getDialogService().showConfirmationBox(  "Start game", answer1 -> {
             System.out.println("You pressed yes? " + answer1);
             Answer1 = answer1;
-
         });
 
         FXGL.getDialogService().showInputBox("speler 2 vul je naam in:", answer -> {
@@ -216,6 +219,8 @@ public class BarioBrosApp extends GameApplication {
         currentLevelData = FXGL.setLevelFromMap(levelPath);
         gameScene.getViewport().setBounds(0, 0, currentLevelData.getWidth(), currentLevelData.getHeight());
         gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
+
+
     }
 
     public static void main(String[] args) {
