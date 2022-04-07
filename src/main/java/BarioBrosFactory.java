@@ -46,7 +46,6 @@ public class BarioBrosFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(EntityType.FLAG)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
                 .with(new CollidableComponent(true))
                 .type(EntityType.FLAG)
                 .build();
@@ -56,7 +55,6 @@ public class BarioBrosFactory implements EntityFactory {
     public Entity newCoin(SpawnData data) {
         return entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
                 .with(new CollidableComponent(true))
                 .type(EntityType.COIN)
                 .build();
