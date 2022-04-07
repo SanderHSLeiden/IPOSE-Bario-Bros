@@ -10,6 +10,7 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
 
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.box2d.collision.Collision;
 import javafx.scene.input.KeyCode;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
@@ -92,6 +93,16 @@ public class BarioBrosApp extends GameApplication {
             protected void onCollision(Entity player, Entity flag) {
                 currentLevelNumber += 1;
                 getGameController().startNewGame();
+            }
+        });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.UNUSEDQUESTIONMARK) {
+            @Override
+            protected void onCollision(Entity player, Entity unusedQuestionMark) {
+                if(player.getY() > unusedQuestionMark.getY() && player.getX() >= unusedQuestionMark.getX() && player.getX() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()) {
+                    score+=10;
+                    unusedQuestionMark.removeFromWorld();
+                }
             }
         });
 
