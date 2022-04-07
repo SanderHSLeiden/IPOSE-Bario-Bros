@@ -19,6 +19,8 @@ import com.almasb.fxgl.app.services.FXGLDialogService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -30,10 +32,12 @@ public class BarioBrosApp extends GameApplication {
     int currentLevelNumber;
     Level currentLevelData;
 
+    Timer levelTimer;
+
     String player1_name = null;
     String player2_name = null;
     boolean Answer1;
-
+    boolean outOfTime;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -47,10 +51,14 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void initGame() {
+        outOfTime = false;
+
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
 
         setLevel(currentLevelNumber);
         respawnPlayer();
+
+        startTimer();
     }
 
     @Override
@@ -97,17 +105,26 @@ public class BarioBrosApp extends GameApplication {
 
             return;
         }
-        if(Answer1 == false){
+
+        if (Answer1 == false) {
             loginUser();
 
         }
 
-
-
         if (player.getY() > currentLevelData.getHeight()) {
             FXGL.getGameScene().getViewport().shake(6, .2);
 
-            respawnPlayer();
+            getGameController().startNewGame();
+        }
+        if (outOfTime) {
+            levelTimer.cancel();
+
+            FXGL.getDialogService().showMessageBox("Tijd is op!", new Runnable() {
+                @Override
+                public void run() {
+                    getGameController().startNewGame();
+                }
+            });
         }
     }
 
@@ -124,7 +141,13 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.UNUSEDQUESTIONMARK) {
             @Override
             protected void onCollision(Entity player, Entity unusedQuestionMark) {
-                if(player.getY() > unusedQuestionMark.getY() && player.getX() >= unusedQuestionMark.getX() && player.getX() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()) {
+                if(player.getY() > unusedQuestionMark.getY()
+                        && (player.getX() >= unusedQuestionMark.getX() || player.getX() + player.getWidth() >= unusedQuestionMark.getX())
+                        && (
+                                player.getX() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
+                                        || player.getX() + player.getWidth() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
+                            )
+                ) {
                     score+=10;
                     unusedQuestionMark.removeFromWorld();
                 }
@@ -140,15 +163,27 @@ public class BarioBrosApp extends GameApplication {
         });
     }
 
+    private void startTimer() {
+        if(levelTimer != null){
+            levelTimer.cancel();
+        }
+        levelTimer = new Timer();
+        levelTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                outOfTime = true;
+            }
+        }, 1000*60, 1000);
+    }
+
     private void loginUser() {
 
         FXGL.getDialogService().showConfirmationBox(  "Start game", answer1 -> {
             System.out.println("You pressed yes? " + answer1);
             Answer1 = answer1;
 
-
-
         });
+
         FXGL.getDialogService().showInputBox("speler 2 vul je naam in:", answer -> {
             System.out.println("You typed: "+ answer);
             player2_name = answer;
