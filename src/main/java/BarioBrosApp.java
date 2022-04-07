@@ -18,6 +18,7 @@ public class BarioBrosApp extends GameApplication {
 
     Entity player;
     int currentLevelInt;
+    int score;
     Level currentLevel;
 
     @Override
@@ -91,6 +92,14 @@ public class BarioBrosApp extends GameApplication {
             protected void onCollision(Entity player, Entity flag) {
                 currentLevelInt += 1;
                 getGameController().startNewGame();
+            }
+        });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.COIN) {
+            @Override
+            protected void onCollision(Entity player, Entity coin) {
+                score += 100;
+                coin.removeFromWorld();
             }
         });
     }

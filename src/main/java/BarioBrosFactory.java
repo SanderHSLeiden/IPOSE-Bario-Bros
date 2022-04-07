@@ -52,6 +52,16 @@ public class BarioBrosFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("coin")
+    public Entity newCoin(SpawnData data) {
+        return entityBuilder(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .type(EntityType.COIN)
+                .build();
+    }
+
     @Spawns("player")
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physicsComponent = new PhysicsComponent();
