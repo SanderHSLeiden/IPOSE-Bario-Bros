@@ -8,24 +8,17 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
-import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.HitBox;
-import com.almasb.fxgl.physics.box2d.collision.Collision;
-import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import com.almasb.fxgl.physics.CollisionHandler;
+import javafx.scene.input.KeyCode;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class BarioBrosApp extends GameApplication {
 
     Entity player;
-    int currentLevel;
+    int currentLevelInt;
+    Level currentLevel;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -34,22 +27,15 @@ public class BarioBrosApp extends GameApplication {
         settings.setTitle("Bario Bros");
         settings.setVersion("1.0");
 
-        currentLevel = 1;
+        currentLevelInt = 1;
     }
 
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
 
-        setLevel(currentLevel);
-
-        player = FXGL.getGameWorld().spawn("player", 50, 50);
-
-        Viewport viewport = FXGL.getGameScene().getViewport();
-        viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
-        viewport.setLazy(true);
-
-        System.out.println(FXGL.getGameWorld().getEntities());
+        setLevel(currentLevelInt);
+        respawnPlayer();
     }
 
     @Override
@@ -90,26 +76,44 @@ public class BarioBrosApp extends GameApplication {
     protected void initUI() {}
 
     @Override
-    protected void onUpdate(double tpf) {}
+    protected void onUpdate(double tpf) {
+        if (player.getY() > currentLevel.getHeight()) {
+            FXGL.getGameScene().getViewport().shake(6, .2);
+
+            respawnPlayer();
+        }
+    }
 
     @Override
     protected void initPhysics() {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
             @Override
             protected void onCollision(Entity player, Entity flag) {
-                currentLevel += 1;
+                currentLevelInt += 1;
                 getGameController().startNewGame();
             }
         });
+    }
+
+    private void respawnPlayer() {
+        if (player != null) {
+            player.removeFromWorld();
+        }
+
+        player = FXGL.getGameWorld().spawn("player", 50, 50);
+
+        Viewport viewport = FXGL.getGameScene().getViewport();
+        viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
+        viewport.setLazy(true);
     }
 
     private void setLevel(int level) {
         GameScene gameScene = FXGL.getGameScene();
         String levelPath = String.format("tmx/level_%s.tmx", level);
 
-        Level levelLoaded = FXGL.setLevelFromMap(levelPath);
-        gameScene.getViewport().setBounds(0, 0, levelLoaded.getWidth(), levelLoaded.getHeight());
-        gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / levelLoaded.getHeight());
+        currentLevel = FXGL.setLevelFromMap(levelPath);
+        gameScene.getViewport().setBounds(0, 0, currentLevel.getWidth(), currentLevel.getHeight());
+        gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevel.getHeight());
     }
 
     public static void main(String[] args) {
