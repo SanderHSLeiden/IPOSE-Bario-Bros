@@ -104,7 +104,7 @@ public class BarioBrosApp extends GameApplication {
 
 
 
-        if (player.getY() > currentLevel.getHeight()) {
+        if (player.getY() > currentLevelData.getHeight()) {
             FXGL.getGameScene().getViewport().shake(6, .2);
 
             respawnPlayer();
