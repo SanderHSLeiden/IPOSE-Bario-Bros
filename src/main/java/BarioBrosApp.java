@@ -52,9 +52,9 @@ public class BarioBrosApp extends GameApplication {
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
-
         setLevel(currentLevelNumber);
         respawnPlayer();
+
     }
 
     @Override
@@ -115,6 +115,7 @@ public class BarioBrosApp extends GameApplication {
         }
     }
 
+
     @Override
     protected void initPhysics() {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
@@ -149,10 +150,8 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getDialogService().showConfirmationBox(  "Start game", answer1 -> {
             System.out.println("You pressed yes? " + answer1);
             Answer1 = answer1;
-
-
-
         });
+
         FXGL.getDialogService().showInputBox("speler 2 vul je naam in:", answer -> {
             System.out.println("You typed: "+ answer);
             player2_name = answer;
@@ -185,9 +184,11 @@ public class BarioBrosApp extends GameApplication {
         currentLevelData = FXGL.setLevelFromMap(levelPath);
         gameScene.getViewport().setBounds(0, 0, currentLevelData.getWidth(), currentLevelData.getHeight());
         gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
+
     }
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }
