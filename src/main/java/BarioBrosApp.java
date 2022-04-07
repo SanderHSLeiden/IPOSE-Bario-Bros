@@ -25,6 +25,7 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 public class BarioBrosApp extends GameApplication {
 
     Entity player;
+    int currentLevel;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -32,13 +33,15 @@ public class BarioBrosApp extends GameApplication {
         settings.setHeight(720);
         settings.setTitle("Bario Bros");
         settings.setVersion("1.0");
+
+        currentLevel = 1;
     }
 
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
 
-        setLevel(3);
+        setLevel(currentLevel);
 
         player = FXGL.getGameWorld().spawn("player", 50, 50);
 
@@ -91,13 +94,13 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-/*        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.PLATFORM) {
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
             @Override
-            protected void onCollision(Entity player, Entity platform) {
-                System.out.println("yooo");
-                player.setY(platform.getY() - 16);
+            protected void onCollision(Entity player, Entity flag) {
+                currentLevel += 1;
+                getGameController().startNewGame();
             }
-        });*/
+        });
     }
 
     private void setLevel(int level) {

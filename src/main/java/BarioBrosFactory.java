@@ -25,6 +25,7 @@ public class BarioBrosFactory implements EntityFactory {
     @Spawns("questionmark")
     public Entity newQuestionBlock(SpawnData data) {
         return entityBuilder(data)
+                .type(EntityType.QUESTIONMARK)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
                 .build();
@@ -33,8 +34,10 @@ public class BarioBrosFactory implements EntityFactory {
     @Spawns("flag")
     public Entity newFinishFlag(SpawnData data) {
         return entityBuilder(data)
+                .type(EntityType.FLAG)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
                 .build();
     }
 
@@ -51,6 +54,7 @@ public class BarioBrosFactory implements EntityFactory {
                 .viewWithBBox(new Rectangle(16,32, Color.RED))
                 .with(physicsComponent)
                 .with(new PlayerControl())
+                .with(new CollidableComponent(true))
                 .type(EntityType.PLAYER)
                 .build();
     }
