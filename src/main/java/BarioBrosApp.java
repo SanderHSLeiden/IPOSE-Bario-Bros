@@ -2,6 +2,7 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.GameScene;
+import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -25,12 +26,15 @@ public class BarioBrosApp extends GameApplication {
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
+        settings.setSceneFactory(new SceneFactory());
+        settings.setMainMenuEnabled(true);
         settings.setHeight(720);
         settings.setTitle("Bario Bros");
         settings.setVersion("1.0");
 
         currentLevelNumber = 1;
     }
+
 
     @Override
     protected void initGame() {
