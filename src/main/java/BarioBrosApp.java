@@ -17,9 +17,9 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 public class BarioBrosApp extends GameApplication {
 
     Entity player;
-    int currentLevelInt;
     int score;
-    Level currentLevel;
+    int currentLevelNumber;
+    Level currentLevelData;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -28,14 +28,14 @@ public class BarioBrosApp extends GameApplication {
         settings.setTitle("Bario Bros");
         settings.setVersion("1.0");
 
-        currentLevelInt = 1;
+        currentLevelNumber = 1;
     }
 
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
 
-        setLevel(currentLevelInt);
+        setLevel(currentLevelNumber);
         respawnPlayer();
     }
 
@@ -78,7 +78,7 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        if (player.getY() > currentLevel.getHeight()) {
+        if (player.getY() > currentLevelData.getHeight()) {
             FXGL.getGameScene().getViewport().shake(6, .2);
 
             respawnPlayer();
@@ -90,7 +90,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
             @Override
             protected void onCollision(Entity player, Entity flag) {
-                currentLevelInt += 1;
+                currentLevelNumber += 1;
                 getGameController().startNewGame();
             }
         });
@@ -120,9 +120,9 @@ public class BarioBrosApp extends GameApplication {
         GameScene gameScene = FXGL.getGameScene();
         String levelPath = String.format("tmx/level_%s.tmx", level);
 
-        currentLevel = FXGL.setLevelFromMap(levelPath);
-        gameScene.getViewport().setBounds(0, 0, currentLevel.getWidth(), currentLevel.getHeight());
-        gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevel.getHeight());
+        currentLevelData = FXGL.setLevelFromMap(levelPath);
+        gameScene.getViewport().setBounds(0, 0, currentLevelData.getWidth(), currentLevelData.getHeight());
+        gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
     }
 
     public static void main(String[] args) {

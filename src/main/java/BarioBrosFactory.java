@@ -66,7 +66,7 @@ public class BarioBrosFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physicsComponent = new PhysicsComponent();
         physicsComponent.setBodyType(BodyType.DYNAMIC);
-        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6, 8)));
+        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(1, 32), BoundingShape.box(14, 1)));
 
         // this avoids player sticking to walls
         physicsComponent.setFixtureDef(new FixtureDef().friction(0.0f));
