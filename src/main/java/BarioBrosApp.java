@@ -149,8 +149,19 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
             @Override
             protected void onCollision(Entity player, Entity flag) {
-                currentLevelNumber += 1;
-                getGameController().startNewGame();
+                if(currentLevelNumber == 4){
+                    FXGL.getDialogService().showMessageBox("Jouw Score:" + player_current_score, new Runnable() {
+                        @Override
+                        public void run() {
+                            currentLevelNumber = 1;
+                            getGameController().gotoMainMenu();
+                        }
+                    });
+                }
+                else {
+                    currentLevelNumber += 1;
+                    getGameController().startNewGame();
+                }
             }
         });
 
