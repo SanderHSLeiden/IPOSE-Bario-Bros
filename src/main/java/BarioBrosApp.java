@@ -11,8 +11,13 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
 
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.box2d.collision.Collision;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import com.almasb.fxgl.texture.AnimationChannel;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -90,7 +95,25 @@ public class BarioBrosApp extends GameApplication {
     }
 
     @Override
-    protected void initUI() {}
+    protected void initUI() {
+        Label scoreText = new Label("Score:");
+        scoreText.setStyle("-fx-text-fill: black");
+        scoreText.setTranslateX(20);
+        scoreText.setTranslateY(20);
+        FXGL.getGameScene().addUINode(scoreText);
+
+        Label score = new Label("High score");
+        score.setStyle("-fx-text-fill: black");
+        score.setTranslateX(60);
+        score.setTranslateY(20);
+        score.textProperty().bind(FXGL.getWorldProperties().intProperty("High score").asString());
+        FXGL.getGameScene().addUINode(score);
+    }
+
+    @Override
+    protected void initGameVars(Map<String, Object> vars) {
+        vars.put("High score", player_current_score);
+    }
 
     @Override
     protected void onUpdate(double tpf) {
@@ -139,7 +162,8 @@ public class BarioBrosApp extends GameApplication {
                                         || player.getX() + player.getWidth() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
                             )
                 ) {
-                    player_current_score +=10;
+                    player_current_score += 10;
+                    FXGL.inc("High score", 10);
                     unusedQuestionMark.removeFromWorld();
                 }
             }
@@ -149,6 +173,7 @@ public class BarioBrosApp extends GameApplication {
             @Override
             protected void onCollision(Entity player, Entity coin) {
                 player_current_score += 100;
+                FXGL.inc("High score", 100);
                 coin.removeFromWorld();
             }
         });
