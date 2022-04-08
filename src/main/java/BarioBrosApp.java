@@ -16,6 +16,7 @@ import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 import java.util.Map;
 import java.util.Timer;
@@ -41,9 +42,10 @@ public class BarioBrosApp extends GameApplication {
         settings.setWidth(1280);
         settings.setSceneFactory(new SceneFactory());
         settings.setMainMenuEnabled(true);
+        settings.setCloseConfirmation(true);
         settings.setHeight(720);
         settings.setTitle("Bario Bros");
-        settings.setVersion("1.0");
+        settings.setVersion("177013");
 
         currentLevelNumber = 1;
     }
@@ -219,6 +221,19 @@ public class BarioBrosApp extends GameApplication {
         currentLevelData = FXGL.setLevelFromMap(levelPath);
         gameScene.getViewport().setBounds(0, 0, currentLevelData.getWidth(), currentLevelData.getHeight());
         gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
+
+        switch (level) {
+            case 1:
+            case 3:
+                gameScene.setBackgroundColor(Color.rgb(161,173,255));
+
+                break;
+            case 2:
+            case 4:
+                gameScene.setBackgroundColor(Color.rgb(0, 0, 0));
+
+                break;
+        }
     }
 
     public static void main(String[] args) {
