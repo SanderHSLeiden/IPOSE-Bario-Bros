@@ -83,7 +83,7 @@ public class BarioBrosFactory implements EntityFactory {
         physicsComponent.setFixtureDef(new FixtureDef().friction(0.0f));
 
         return entityBuilder(data)
-                .viewWithBBox(new Rectangle(16,32, Color.RED))
+                .bbox(new HitBox(BoundingShape.box(16, 32)))
                 .with(physicsComponent)
                 .with(new PlayerControl())
                 .with(new CollidableComponent(true))
