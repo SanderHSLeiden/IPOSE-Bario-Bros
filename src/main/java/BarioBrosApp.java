@@ -36,6 +36,7 @@ public class BarioBrosApp extends GameApplication {
         settings.setWidth(1280);
         settings.setSceneFactory(new SceneFactory());
         settings.setMainMenuEnabled(true);
+        settings.setCloseConfirmation(true);
         settings.setHeight(720);
         settings.setTitle("Bario Bros");
         settings.setVersion("1.0");
