@@ -160,6 +160,7 @@ public class BarioBrosApp extends GameApplication {
                 }
                 else {
                     currentLevelNumber += 1;
+                    player_current_score = 0;
                     getGameController().startNewGame();
                 }
             }
