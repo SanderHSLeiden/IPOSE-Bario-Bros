@@ -99,6 +99,13 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void initUI() {
+        Label playerText = new Label("Player name:");
+        playerText.setStyle("-fx-text-fill: black");
+        playerText.setTranslateX(20);
+        playerText.setTranslateY(0);
+        playerText.textProperty().bind(FXGL.getWorldProperties().stringProperty("Player name"));
+        FXGL.getGameScene().addUINode(playerText);
+
         Label scoreText = new Label("Score:");
         scoreText.setStyle("-fx-text-fill: black");
         scoreText.setTranslateX(20);
@@ -116,6 +123,7 @@ public class BarioBrosApp extends GameApplication {
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("High score", player_current_score);
+        vars.put("Player name", player_name);
     }
 
     @Override
@@ -212,6 +220,7 @@ public class BarioBrosApp extends GameApplication {
     private void loginUser() {
         FXGL.getDialogService().showInputBox("Vul je speler naam in:", answer -> {
             player_name = answer;
+            FXGL.set("Player name", player_name);
         });
     }
 
