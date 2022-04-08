@@ -198,7 +198,7 @@
   <object id="250" type="coin" gid="58" x="3582.5" y="80.5" width="16" height="16"/>
   <object id="251" type="coin" gid="58" x="3631" y="80" width="16" height="16"/>
   <object id="252" type="coin" gid="58" x="3761" y="144" width="16" height="16"/>
-  <object id="253" type="con" gid="58" x="3792.5" y="146.5" width="16" height="16"/>
-  <object id="254" type="con" gid="58" x="3823" y="141.5" width="16" height="16"/>
+  <object id="253" type="coin" gid="58" x="3792.5" y="146.5" width="16" height="16"/>
+  <object id="254" type="coin" gid="58" x="3823" y="141.5" width="16" height="16"/>
  </objectgroup>
 </map>
