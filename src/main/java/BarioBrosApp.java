@@ -12,6 +12,7 @@ import com.almasb.fxgl.input.virtual.VirtualButton;
 
 import com.almasb.fxgl.physics.CollisionHandler;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,7 +40,7 @@ public class BarioBrosApp extends GameApplication {
         settings.setCloseConfirmation(true);
         settings.setHeight(720);
         settings.setTitle("Bario Bros");
-        settings.setVersion("1.0");
+        settings.setVersion("177013");
 
         currentLevelNumber = 1;
     }
@@ -195,6 +196,19 @@ public class BarioBrosApp extends GameApplication {
         currentLevelData = FXGL.setLevelFromMap(levelPath);
         gameScene.getViewport().setBounds(0, 0, currentLevelData.getWidth(), currentLevelData.getHeight());
         gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
+
+        switch (level) {
+            case 1:
+            case 3:
+                gameScene.setBackgroundColor(Color.rgb(161,173,255));
+
+                break;
+            case 2:
+            case 4:
+                gameScene.setBackgroundColor(Color.rgb(0, 0, 0));
+
+                break;
+        }
     }
 
     public static void main(String[] args) {
