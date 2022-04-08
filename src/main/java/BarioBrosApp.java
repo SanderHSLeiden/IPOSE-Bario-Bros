@@ -30,6 +30,7 @@ public class BarioBrosApp extends GameApplication {
     Entity player;
     String player_name = "";
     int player_current_score = 0;
+    int player_total_score = 0;
 
     int currentLevelNumber;
     Level currentLevelData;
@@ -143,14 +144,16 @@ public class BarioBrosApp extends GameApplication {
         }
     }
 
-
     @Override
     protected void initPhysics() {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
             @Override
             protected void onCollision(Entity player, Entity flag) {
+                player_total_score += player_current_score;
+                player_current_score = 0;
+
                 if(currentLevelNumber == 4){
-                    FXGL.getDialogService().showMessageBox("Jouw Score:" + player_current_score, new Runnable() {
+                    FXGL.getDialogService().showMessageBox(String.format("Gefeliciteerd %s, je hebt Bario Bros uitgespeeld!\nJe eindscore was %d punten", player_name, player_total_score), new Runnable() {
                         @Override
                         public void run() {
                             currentLevelNumber = 1;
@@ -160,7 +163,7 @@ public class BarioBrosApp extends GameApplication {
                 }
                 else {
                     currentLevelNumber += 1;
-                    player_current_score = 0;
+
                     getGameController().startNewGame();
                 }
             }
