@@ -128,7 +128,7 @@
   <object id="139" type="platform" x="2665" y="287"/>
   <object id="145" type="platform" x="1450" y="228" width="1"/>
   <object id="149" type="platform" x="2848.5" y="244.5" width="16" height="16"/>
-  <object id="150" type="platform" x="2914.5" y="247" width="16" height="16"/>
+  <object id="150" type="platform" x="2914.5" y="241.667" width="16" height="16"/>
   <object id="153" type="platform" x="2944" y="212.5" width="16" height="16"/>
   <object id="154" type="platform" x="2977.5" y="181.5" width="16" height="16"/>
   <object id="155" type="platform" x="3010" y="213.5" width="16" height="16"/>
@@ -203,7 +203,7 @@
   <object id="255" type="platform" gid="181" x="703" y="145.333" width="16" height="16"/>
   <object id="256" type="platform" gid="181" x="719.667" y="145" width="16" height="16"/>
   <object id="257" type="platform" gid="181" x="736.333" y="145.333" width="16" height="16"/>
-  <object id="258" type="platform" gid="181" x="750.333" y="144" width="16" height="16"/>
+  <object id="258" type="platform" gid="181" x="750.667" y="145.333" width="16" height="16"/>
   <object id="259" type="coin" gid="58" x="704.333" y="127.333" width="16" height="16"/>
   <object id="260" type="coin" gid="58" x="719.667" y="128" width="16" height="16"/>
   <object id="261" type="coin" gid="58" x="734.333" y="126.667" width="16" height="16"/>
