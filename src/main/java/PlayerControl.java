@@ -41,7 +41,15 @@ public class PlayerControl extends Component {
         if (!isOnGround) {
             texture.loopAnimationChannel(animJump);
 
+            if (physics.getVelocityY() > -10) {
+                texture.setRotate(texture.getRotate() + (texture.getRotate() / 36 + 1));
+            }
+
             return;
+        }
+
+        if (texture.getRotate() > 0) {
+            texture.setRotate(texture.getRotate() - (texture.getRotate() / 2));
         }
 
         if (isWalking) {
@@ -68,6 +76,7 @@ public class PlayerControl extends Component {
     public void jump() {
         if (!canJump) return;
 
+        texture.setRotate(-10);
         physics.setVelocityY(-300);
     }
 
