@@ -33,6 +33,8 @@ public class BarioBrosApp extends GameApplication {
     Level currentLevelData;
 
     Timer levelTimer;
+    Timer immuneTimer;
+    boolean immuneToDamage;
     boolean outOfTime = false;
 
     @Override
@@ -92,6 +94,13 @@ public class BarioBrosApp extends GameApplication {
                 player.getComponent(PlayerControl.class).jump();
             }
         }, KeyCode.W, VirtualButton.A);
+
+        getInput().addAction(new UserAction("usePower") {
+            @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerControl.class).usePower();
+            }
+        }, KeyCode.SPACE, VirtualButton.B);
     }
 
     @Override
@@ -192,6 +201,30 @@ public class BarioBrosApp extends GameApplication {
             }
         });
 
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.UNUSEDPOWERQUESTIONMARK) {
+            @Override
+            protected void onCollision(Entity player, Entity unusedPowerQuestionMark) {
+                if(player.getY() > unusedPowerQuestionMark.getY()
+                        && (player.getX() >= unusedPowerQuestionMark.getX() || player.getX() + player.getWidth() >= unusedPowerQuestionMark.getX())
+                        && (
+                        player.getX() <= unusedPowerQuestionMark.getX() + unusedPowerQuestionMark.getWidth()
+                                || player.getX() + player.getWidth() <= unusedPowerQuestionMark.getX() + unusedPowerQuestionMark.getWidth()
+                )
+                ) {
+                    unusedPowerQuestionMark.removeFromWorld();
+                    FXGL.getGameWorld().spawn("flower", unusedPowerQuestionMark.getX(), unusedPowerQuestionMark.getY() - 16);
+                }
+            }
+        });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLOWER) {
+            @Override
+            protected void onCollision(Entity player, Entity flower) {
+                player.getComponent(PlayerControl.class).hasPower = true;
+                flower.removeFromWorld();
+            }
+        });
+
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
@@ -211,8 +244,34 @@ public class BarioBrosApp extends GameApplication {
                     return;
                 }
 
+                if(player.getComponent(PlayerControl.class).hasPower) {
+                    player.getComponent(PlayerControl.class).hasPower = false;
+                    immuneToDamage = true;
+
+                    immuneTimer = new Timer();
+                    immuneTimer.scheduleAtFixedRate(new TimerTask() {
+                        @Override
+                        public void run() {
+                            immuneToDamage = false;
+                        }
+                    }, 1000, 1000);
+                    return;
+                }
+
+                if(immuneToDamage) {
+                    return;
+                }
+
                 FXGL.getGameScene().getViewport().shake(6, .2);
                 respawnPlayer();
+            }
+        });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.FLAMEORB, EntityType.ENEMY) {
+            @Override
+            protected void onCollision(Entity flameOrb, Entity enemy) {
+                enemy.removeFromWorld();
+                flameOrb.removeFromWorld();
             }
         });
     }

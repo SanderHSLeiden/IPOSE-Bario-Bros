@@ -1,6 +1,7 @@
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -13,6 +14,7 @@ public class PlayerControl extends Component {
     private boolean isOnGround = false;
     private boolean canJump = false;
     private boolean isWalking = false;
+    public boolean hasPower = false;
 
     private AnimatedTexture texture;
     private AnimationChannel animIdle, animWalk, animJump;
@@ -61,6 +63,12 @@ public class PlayerControl extends Component {
         }
 
         texture.loopAnimationChannel(animIdle);
+    }
+
+    public void usePower() {
+        if(hasPower) {
+            FXGL.getGameWorld().spawn("flameOrb", entity.getX() + entity.getWidth(), entity.getY() - 8);
+        }
     }
 
     public void left() {

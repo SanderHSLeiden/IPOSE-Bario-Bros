@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="230" height="12" tilewidth="16" tileheight="16" nextobjectid="237">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="230" height="12" tilewidth="16" tileheight="16" nextobjectid="258">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="924" columns="33">
- <image source="tileset.png" width="528" height="448"/>
+  <image source="tileset.png" width="528" height="448"/>
  </tileset>
  <tileset firstgid="925" name="enemy" tilewidth="32" tileheight="32" tilecount="1" columns="0">
-   <grid orientation="orthogonal" width="1" height="1"/>
-   <tile id="0">
-    <properties>
-     <property name="fromX" type="int" value="0"/>
-     <property name="toX" type="int" value="0"/>
-    </properties>
-    <image width="32" height="32" source="rock.png"/>
-   </tile>
-  </tileset>
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <properties>
+    <property name="fromX" type="int" value="0"/>
+    <property name="toX" type="int" value="0"/>
+   </properties>
+   <image width="32" height="32" source="rock.png"/>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="230" height="12">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,246,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -76,7 +76,7 @@
   <object id="169" type="wall" x="3648" y="0" width="32" height="160"/>
   <object id="182" type="unusedquestionmark" gid="25" x="272" y="112" width="16" height="16"/>
   <object id="183" type="unusedquestionmark" gid="25" x="352" y="112" width="16" height="16"/>
-  <object id="184" type="unusedquestionmark" gid="25" x="368" y="48" width="16" height="16"/>
+  <object id="184" type="unusedpowerquestionmark" gid="25" x="368" y="48" width="16" height="16"/>
   <object id="185" type="unusedquestionmark" gid="25" x="384" y="112" width="16" height="16"/>
   <object id="186" type="unusedquestionmark" gid="25" x="1296" y="112" width="16" height="16"/>
   <object id="187" type="unusedquestionmark" gid="25" x="1584" y="48" width="16" height="16"/>
@@ -116,5 +116,47 @@
   <object id="232" type="platform" x="2368" y="112" width="16" height="48"/>
   <object id="235" type="platform" x="2384" y="128" width="16" height="32"/>
   <object id="236" type="platform" x="2400" y="144" width="16" height="16"/>
+  <object id="245" type="enemy" gid="925" x="272" y="161" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="272"/>
+    <property name="toX" type="int" value="380"/>
+   </properties>
+  </object>
+  <object id="249" type="enemy" gid="925" x="737.5" y="159" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="738"/>
+    <property name="toX" type="int" value="820"/>
+   </properties>
+  </object>
+  <object id="251" type="enemy" gid="925" x="1205.5" y="156" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="1200"/>
+    <property name="toX" type="int" value="1400"/>
+   </properties>
+  </object>
+  <object id="252" type="enemy" gid="925" x="1496.5" y="154.5" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="1500"/>
+    <property name="toX" type="int" value="1700"/>
+   </properties>
+  </object>
+  <object id="253" type="enemy" gid="925" x="1703" y="156.5" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="1700"/>
+    <property name="toX" type="int" value="1900"/>
+   </properties>
+  </object>
+  <object id="254" type="enemy" gid="925" x="1905.5" y="155" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="1950"/>
+    <property name="toX" type="int" value="2000"/>
+   </properties>
+  </object>
+  <object id="255" type="enemy" gid="925" x="2419.5" y="155.5" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="2420"/>
+    <property name="toX" type="int" value="2550"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -1,3 +1,4 @@
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.*;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.physics.BoundingShape;
@@ -8,6 +9,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
@@ -54,10 +56,44 @@ public class BarioBrosFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("unusedpowerquestionmark")
+    public Entity newUnusedPowerQuestionBlock(SpawnData data) {
+        return entityBuilder(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .type(EntityType.UNUSEDPOWERQUESTIONMARK)
+                .build();
+    }
+
+    @Spawns("flower")
+    public Entity newFlower(SpawnData data) {
+        return entityBuilder(data)
+                //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .viewWithBBox("flower.png")
+                .with(new CollidableComponent(true))
+                .type(EntityType.FLOWER)
+                .build();
+    }
+
+    @Spawns("flameOrb")
+    public Entity newFlameOrb(SpawnData data) {
+        PhysicsComponent physicsComponent = new PhysicsComponent();
+        physicsComponent.setBodyType(BodyType.DYNAMIC);
+        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(0, 2), BoundingShape.circle(2)));
+
+        return entityBuilder(data)
+                .viewWithBBox(new Circle(2, Color.RED))
+                .with(physicsComponent)
+                .with(new OrbControl())
+                .with(new CollidableComponent(true))
+                .type(EntityType.FLAMEORB)
+                .build();
+    }
+
     @Spawns("flag")
     public Entity newFinishFlag(SpawnData data) {
         return entityBuilder(data)
-                .type(EntityType.FLAG)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
                 .type(EntityType.FLAG)
