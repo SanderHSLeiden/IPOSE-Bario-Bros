@@ -73,6 +73,21 @@ public class BarioBrosFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("enemy")
+    public Entity newEnemy(SpawnData data) {
+        PhysicsComponent physicsComponent = new PhysicsComponent();
+        physicsComponent.setBodyType(BodyType.DYNAMIC);
+        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(1, 32), BoundingShape.box(30, 1)));
+
+        return entityBuilder(data)
+                .bbox(new HitBox(BoundingShape.box(32, 32)))
+                .with(physicsComponent)
+                .with(new EnemyControl())
+                .with(new CollidableComponent(true))
+                .type(EntityType.ENEMY)
+                .build();
+    }
+
     @Spawns("player")
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physicsComponent = new PhysicsComponent();

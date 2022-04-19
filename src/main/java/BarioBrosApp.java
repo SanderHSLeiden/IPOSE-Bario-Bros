@@ -11,9 +11,6 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
 
 import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.box2d.collision.Collision;
-import com.almasb.fxgl.texture.AnimatedTexture;
-import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
@@ -134,6 +131,8 @@ public class BarioBrosApp extends GameApplication {
             return;
         }
 
+        FXGL.set("High score", player_current_score);
+
         if (player.getY() > currentLevelData.getHeight()) {
             FXGL.getGameScene().getViewport().shake(6, .2);
 
@@ -188,7 +187,6 @@ public class BarioBrosApp extends GameApplication {
                             )
                 ) {
                     player_current_score += 10;
-                    FXGL.inc("High score", 10);
                     unusedQuestionMark.removeFromWorld();
                 }
             }
@@ -198,8 +196,23 @@ public class BarioBrosApp extends GameApplication {
             @Override
             protected void onCollision(Entity player, Entity coin) {
                 player_current_score += 100;
-                FXGL.inc("High score", 100);
                 coin.removeFromWorld();
+            }
+        });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.ENEMY) {
+            @Override
+            protected void onCollision(Entity player, Entity enemy) {
+                if (player.getBottomY() - enemy.getY() < 5) {
+                    player_current_score += 100;
+
+                    enemy.removeFromWorld();
+
+                    return;
+                }
+
+                FXGL.getGameScene().getViewport().shake(6, .2);
+                respawnPlayer();
             }
         });
     }
