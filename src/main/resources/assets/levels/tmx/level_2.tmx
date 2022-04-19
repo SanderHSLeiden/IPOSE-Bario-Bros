@@ -3,6 +3,16 @@
 <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="924" columns="33">
  <image source="tileset.png" width="528" height="448"/>
  </tileset>
+ <tileset firstgid="925" name="enemy" tilewidth="32" tileheight="32" tilecount="1" columns="0">
+   <grid orientation="orthogonal" width="1" height="1"/>
+   <tile id="0">
+    <properties>
+     <property name="fromX" type="int" value="0"/>
+     <property name="toX" type="int" value="0"/>
+    </properties>
+    <image width="32" height="32" source="rock.png"/>
+   </tile>
+  </tileset>
  <layer name="Tilelaag 1" width="53" height="17">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,
