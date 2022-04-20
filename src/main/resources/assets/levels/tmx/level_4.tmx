@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="275" height="30" tilewidth="16" tileheight="16" nextobjectid="269">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="275" height="30" tilewidth="16" tileheight="16" nextobjectid="275">
  <tileset firstgid="1" name="SMB" tilewidth="16" tileheight="16" tilecount="924" columns="33">
   <image source="tileset.png" width="528" height="448"/>
  </tileset>
  <tileset firstgid="925" name="enemy" tilewidth="32" tileheight="32" tilecount="1" columns="0">
-   <grid orientation="orthogonal" width="1" height="1"/>
-   <tile id="0">
-    <properties>
-     <property name="fromX" type="int" value="0"/>
-     <property name="toX" type="int" value="0"/>
-    </properties>
-    <image width="32" height="32" source="rock.png"/>
-   </tile>
-  </tileset>
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <properties>
+    <property name="fromX" type="int" value="0"/>
+    <property name="toX" type="int" value="0"/>
+   </properties>
+   <image width="32" height="32" source="rock.png"/>
+  </tile>
+ </tileset>
  <layer name="Tilelaag 1" width="275" height="30" offsetx="79" offsety="13">
   <data encoding="csv">
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,181,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,181,181,181,181,181,181,181,181,181,181,0,0,0,0,0,
@@ -223,5 +223,23 @@
   <object id="265" type="platform" x="538" y="124" width="32" height="16"/>
   <object id="266" type="platform" x="616" y="156" width="32" height="16"/>
   <object id="268" type="platform" x="432" y="16" width="384" height="16"/>
+  <object id="271" type="enemy" gid="925" x="1687.67" y="134.667" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="1550"/>
+    <property name="toX" type="int" value="1695"/>
+   </properties>
+  </object>
+  <object id="273" type="enemy" gid="925" x="2595.67" y="288" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="2449"/>
+    <property name="toX" type="int" value="2595"/>
+   </properties>
+  </object>
+  <object id="274" type="enemy" gid="925" x="363.667" y="287.333" width="32" height="32">
+   <properties>
+    <property name="fromX" type="int" value="363"/>
+    <property name="toX" type="int" value="445"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
