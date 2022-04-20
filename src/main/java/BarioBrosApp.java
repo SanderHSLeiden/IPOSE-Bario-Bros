@@ -10,16 +10,28 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
 
+
 import com.almasb.fxgl.physics.CollisionHandler;
+
+import com.almasb.fxgl.physics.box2d.collision.Collision;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import com.almasb.fxgl.texture.AnimationChannel;
+
+import javafx.application.Platform;
+
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
+
 
 
 public class BarioBrosApp extends GameApplication {
@@ -37,6 +49,11 @@ public class BarioBrosApp extends GameApplication {
     boolean immuneToDamage;
     boolean outOfTime = false;
 
+
+
+
+
+
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
@@ -47,26 +64,42 @@ public class BarioBrosApp extends GameApplication {
         settings.setTitle("Bario Bros");
         settings.setVersion("177013");
 
+
+
         currentLevelNumber = 1;
     }
 
 
     @Override
     protected void initGame() {
+
+
+
         outOfTime = false;
 
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
         setLevel(currentLevelNumber);
         respawnPlayer();
 
+
         startTimer();
+
+
+
+
+
+
+
     }
+
 
     @Override
     protected void initInput() {
         getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
+
+
                 player.getComponent(PlayerControl.class).left();
             }
 
@@ -79,8 +112,11 @@ public class BarioBrosApp extends GameApplication {
         getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
+
+
                 player.getComponent(PlayerControl.class).right();
             }
+
 
             @Override
             protected void onActionEnd() {
@@ -91,8 +127,10 @@ public class BarioBrosApp extends GameApplication {
         getInput().addAction(new UserAction("Jump") {
             @Override
             protected void onActionBegin() {
+                FXGL.play("jump.wav");
                 player.getComponent(PlayerControl.class).jump();
             }
+
         }, KeyCode.W, VirtualButton.A);
 
         getInput().addAction(new UserAction("usePower") {
@@ -124,6 +162,8 @@ public class BarioBrosApp extends GameApplication {
         score.setTranslateY(20);
         score.textProperty().bind(FXGL.getWorldProperties().intProperty("High score").asString());
         FXGL.getGameScene().addUINode(score);
+
+
     }
 
     @Override
@@ -134,6 +174,7 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
+
         if (player_name.isEmpty()) {
             loginUser();
 
@@ -155,6 +196,7 @@ public class BarioBrosApp extends GameApplication {
                 @Override
                 public void run() {
                     getGameController().startNewGame();
+
                 }
             });
         }
@@ -162,6 +204,7 @@ public class BarioBrosApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
+
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLAG) {
             @Override
             protected void onCollision(Entity player, Entity flag) {
@@ -169,6 +212,7 @@ public class BarioBrosApp extends GameApplication {
                 player_current_score = 0;
 
                 if(currentLevelNumber == 4){
+                    FXGL.play("levelGehaald.wav");
                     FXGL.getDialogService().showMessageBox(String.format("Gefeliciteerd %s, je hebt Bario Bros uitgespeeld!\nJe eindscore was %d punten", player_name, player_total_score), new Runnable() {
                         @Override
                         public void run() {
@@ -188,6 +232,8 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.UNUSEDQUESTIONMARK) {
             @Override
             protected void onCollision(Entity player, Entity unusedQuestionMark) {
+                FXGL.play("getItem.wav");
+
                 if(player.getY() > unusedQuestionMark.getY()
                         && (player.getX() >= unusedQuestionMark.getX() || player.getX() + player.getWidth() >= unusedQuestionMark.getX())
                         && (
@@ -195,8 +241,13 @@ public class BarioBrosApp extends GameApplication {
                                         || player.getX() + player.getWidth() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
                             )
                 ) {
+
+
                     player_current_score += 10;
                     unusedQuestionMark.removeFromWorld();
+
+
+
                 }
             }
         });
@@ -228,9 +279,14 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
+                FXGL.play("getItem.wav");
                 player_current_score += 100;
                 coin.removeFromWorld();
+
+
+
             }
+
         });
 
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.ENEMY) {
@@ -277,6 +333,9 @@ public class BarioBrosApp extends GameApplication {
     }
 
     private void startTimer() {
+
+
+
         if(levelTimer != null){
             levelTimer.cancel();
         }
@@ -284,9 +343,14 @@ public class BarioBrosApp extends GameApplication {
         levelTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                FXGL.play("gameOver.wav");
                 outOfTime = true;
+
+
             }
         }, 1000*60, 1000);
+
+
     }
 
     private void loginUser() {
@@ -297,12 +361,21 @@ public class BarioBrosApp extends GameApplication {
     }
 
     private void respawnPlayer() {
+
+
         if (player != null) {
             player.removeFromWorld();
             startTimer();
+            FXGL.play("gameOver.wav");
+
+
+
+
         }
 
+
         player = FXGL.getGameWorld().spawn("player", 50, 50);
+
 
 
         Viewport viewport = FXGL.getGameScene().getViewport();
@@ -311,6 +384,7 @@ public class BarioBrosApp extends GameApplication {
     }
 
     private void setLevel(int level) {
+        FXGL.play("levelGehaald.wav");
         GameScene gameScene = FXGL.getGameScene();
         String levelPath = String.format("tmx/level_%s.tmx", level);
 
@@ -319,6 +393,7 @@ public class BarioBrosApp extends GameApplication {
         gameScene.getViewport().setZoom(gameScene.getViewport().getHeight() / currentLevelData.getHeight());
 
         switch (level) {
+
             case 1:
             case 3:
                 gameScene.setBackgroundColor(Color.rgb(161,173,255));
@@ -332,7 +407,11 @@ public class BarioBrosApp extends GameApplication {
         }
     }
 
+
+
+
     public static void main(String[] args) {
         launch(args);
+
     }
 }

@@ -86,6 +86,7 @@ public class PlayerControl extends Component {
 
         texture.setRotate(-10);
         physics.setVelocityY(-300);
+
     }
 
     public void stop() {
