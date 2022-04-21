@@ -159,13 +159,11 @@ public class BarioBrosApp extends GameApplication {
 
         if (player.getY() > currentLevelData.getHeight()) {
             FXGL.getGameScene().getViewport().shake(6, .2);
-
             respawnPlayer();
         }
 
         if (outOfTime) {
             levelTimer.cancel();
-
             FXGL.getDialogService().showMessageBox("Tijd is op!", new Runnable() {
                 @Override
                 public void run() {
@@ -206,7 +204,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.UNUSEDQUESTIONMARK) {
             @Override
             protected void onCollision(Entity player, Entity unusedQuestionMark) {
-                FXGL.play("getItem.wav");
+
 
                 if(player.getY() > unusedQuestionMark.getY()
                         && (player.getX() >= unusedQuestionMark.getX() || player.getX() + player.getWidth() >= unusedQuestionMark.getX())
@@ -215,6 +213,7 @@ public class BarioBrosApp extends GameApplication {
                                         || player.getX() + player.getWidth() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
                             )
                 ) {
+                    FXGL.play("getItem.wav");
                     player_current_score += 10;
                     unusedQuestionMark.removeFromWorld();
                 }
@@ -231,6 +230,7 @@ public class BarioBrosApp extends GameApplication {
                                 || player.getX() + player.getWidth() <= unusedPowerQuestionMark.getX() + unusedPowerQuestionMark.getWidth()
                 )
                 ) {
+                    FXGL.play("getItem.wav");
                     unusedPowerQuestionMark.removeFromWorld();
                     FXGL.getGameWorld().spawn("flower", unusedPowerQuestionMark.getX(), unusedPowerQuestionMark.getY() - 16);
                 }
@@ -240,6 +240,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.FLOWER) {
             @Override
             protected void onCollision(Entity player, Entity flower) {
+                FXGL.play("getItem.wav");
                 player.getComponent(PlayerControl.class).hasPower = true;
                 flower.removeFromWorld();
             }
@@ -260,16 +261,15 @@ public class BarioBrosApp extends GameApplication {
             protected void onCollision(Entity player, Entity enemy) {
                 if (player.getBottomY() - enemy.getY() < 5) {
                     player_current_score += 100;
-
+                    FXGL.play("getItem.wav");
                     enemy.removeFromWorld();
-
                     return;
                 }
+                FXGL.play("gameOver.wav");
 
                 if(player.getComponent(PlayerControl.class).hasPower) {
                     player.getComponent(PlayerControl.class).hasPower = false;
                     immuneToDamage = true;
-
                     immuneTimer = new Timer();
                     immuneTimer.scheduleAtFixedRate(new TimerTask() {
                         @Override
@@ -286,6 +286,7 @@ public class BarioBrosApp extends GameApplication {
 
                 FXGL.getGameScene().getViewport().shake(6, .2);
                 respawnPlayer();
+
             }
         });
 
@@ -306,7 +307,7 @@ public class BarioBrosApp extends GameApplication {
         levelTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                FXGL.play("gameOver.wav");
+
                 outOfTime = true;
             }
         }, 1000*60, 1000);
@@ -321,14 +322,14 @@ public class BarioBrosApp extends GameApplication {
 
     private void respawnPlayer() {
 
-
         if (player != null) {
             player.removeFromWorld();
             startTimer();
-            FXGL.play("gameOver.wav");
+
         }
 
         player = FXGL.getGameWorld().spawn("player", 50, 50);
+
 
         Viewport viewport = FXGL.getGameScene().getViewport();
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
