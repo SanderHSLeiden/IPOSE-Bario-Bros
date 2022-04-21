@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="53" height="17" tilewidth="16" tileheight="16" nextobjectid="112">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="53" height="17" tilewidth="16" tileheight="16" nextobjectid="143">
  <tileset firstgid="1" name="SMB" tilewidth="16" tileheight="16" tilecount="924" columns="33">
   <image source="tileset.png" width="528" height="448"/>
  </tileset>
@@ -25,11 +25,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,0,0,0,0,0,0,116,116,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,92,0,0,0,0,0,0,116,116,
 0,0,0,0,0,0,0,0,0,0,0,92,92,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,92,92,0,0,0,0,0,0,116,116,
-0,0,0,0,0,0,925,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,265,266,0,116,116,
 0,0,0,0,92,92,92,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,0,0,0,0,0,0,265,266,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,298,299,0,116,116,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,0,0,0,265,266,0,298,299,0,0,0,0,0,0,116,116,0,0,0,0,265,266,0,298,299,0,116,116,
-0,0,0,0,0,0,0,0,925,0,0,0,0,0,0,0,0,0,0,0,116,0,0,116,116,0,0,0,298,299,0,298,299,0,0,0,925,0,0,116,116,0,0,0,0,298,299,0,298,299,0,116,116,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,116,116,0,0,0,298,299,0,298,299,0,0,0,0,0,0,116,116,0,0,0,0,298,299,0,298,299,0,116,116,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,0,0,116,116,0,0,0,298,299,0,298,299,0,0,0,0,0,116,116,116,0,0,0,0,298,299,0,298,299,0,116,116,
 69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,80,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,116
 </data>
@@ -89,7 +89,7 @@
   <object id="20" type="platform" x="241" y="36" width="26" height="58"/>
   <object id="21" type="platform" x="246" y="34" width="40" height="27"/>
   <object id="22" type="platform" x="66" y="195" width="61" height="12"/>
-  <object id="23" type="platform" x="179" y="145" width="44" height="14"/>
+  <object id="23" type="platform" x="196" y="145" width="27" height="14"/>
   <object id="24" type="platform" x="337" y="131" width="29" height="9"/>
   <object id="25" type="platform" x="355" y="113" width="26" height="14"/>
   <object id="26" type="platform" x="372" y="99" width="25" height="9"/>
@@ -123,27 +123,20 @@
   <object id="56" type="coin" gid="59" x="690" y="92" width="16" height="16"/>
   <object id="58" type="coin" gid="60" x="801" y="48" width="16" height="16"/>
   <object id="60" type="coin" gid="60" x="769" y="113" width="16" height="16"/>
-  <object id="100" type="enemy" gid="925" x="94" y="175" width="16" height="16"/>
-  <object id="101" type="enemy" gid="925" x="108" y="178" width="16" height="16"/>
+  <object id="100" type="enemy" gid="925" x="80" y="260" width="16" height="16">
+   <properties>
+    <property name="fromX" type="int" value="80"/>
+    <property name="toX" type="int" value="260"/>
+   </properties>
+  </object>
+  <object id="114" type="enemy" gid="925" x="530" y="256" width="16" height="16">
+   <properties>
+    <property name="fromX" type="int" value="530"/>
+    <property name="toX" type="int" value="590"/>
+   </properties>
+  </object>
+  <object id="140" type="unusedpowerquestionmark" x="178" y="148" width="14" height="11"/>
+  <object id="142" type="platform" x="179" y="144" width="16" height="2"/>
  </objectgroup>
- <objectgroup name="Objectlaag 4">
-  <object id="109" type="enemy" x="579" y="226" width="24" height="25">
-   <properties>
-    <property name="fromX" type="int" value="384"/>
-    <property name="toX" type="int" value="480"/>
-   </properties>
-  </object>
-  <object id="110" type="enemy" x="98" y="164" width="28" height="24">
-   <properties>
-    <property name="fromX" type="int" value="384"/>
-    <property name="toX" type="int" value="480"/>
-   </properties>
-  </object>
-  <object id="111" type="enemy" x="131" y="226" width="27" height="27">
-   <properties>
-    <property name="fromX" type="int" value="384"/>
-    <property name="toX" type="int" value="480"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Objectlaag 4"/>
 </map>
