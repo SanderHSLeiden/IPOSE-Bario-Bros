@@ -131,8 +131,8 @@
   </object>
   <object id="114" type="enemy" gid="925" x="530" y="256" width="16" height="16">
    <properties>
-    <property name="fromX" type="int" value="530"/>
-    <property name="toX" type="int" value="590"/>
+    <property name="fromX" type="int" value="535"/>
+    <property name="toX" type="int" value="560"/>
    </properties>
   </object>
   <object id="140" type="unusedpowerquestionmark" x="178" y="148" width="14" height="11"/>
