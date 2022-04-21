@@ -18,7 +18,6 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 
 public class BarioBrosFactory implements EntityFactory {
 
-
     @Spawns("platform")
     public Entity newPlatform(SpawnData data) {
         return entityBuilder(data)
@@ -99,8 +98,6 @@ public class BarioBrosFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .type(EntityType.FLAG)
                 .build();
-
-
     }
 
     @Spawns("coin")

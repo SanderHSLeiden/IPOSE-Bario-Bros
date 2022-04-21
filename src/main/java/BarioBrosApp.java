@@ -49,11 +49,6 @@ public class BarioBrosApp extends GameApplication {
     boolean immuneToDamage;
     boolean outOfTime = false;
 
-
-
-
-
-
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
@@ -64,32 +59,18 @@ public class BarioBrosApp extends GameApplication {
         settings.setTitle("Bario Bros");
         settings.setVersion("177013");
 
-
-
         currentLevelNumber = 1;
     }
 
-
     @Override
     protected void initGame() {
-
-
-
         outOfTime = false;
 
         FXGL.getGameWorld().addEntityFactory(new BarioBrosFactory());
         setLevel(currentLevelNumber);
         respawnPlayer();
 
-
         startTimer();
-
-
-
-
-
-
-
     }
 
 
@@ -98,8 +79,6 @@ public class BarioBrosApp extends GameApplication {
         getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
-
-
                 player.getComponent(PlayerControl.class).left();
             }
 
@@ -112,11 +91,8 @@ public class BarioBrosApp extends GameApplication {
         getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
-
-
                 player.getComponent(PlayerControl.class).right();
             }
-
 
             @Override
             protected void onActionEnd() {
@@ -162,8 +138,6 @@ public class BarioBrosApp extends GameApplication {
         score.setTranslateY(20);
         score.textProperty().bind(FXGL.getWorldProperties().intProperty("High score").asString());
         FXGL.getGameScene().addUINode(score);
-
-
     }
 
     @Override
@@ -241,13 +215,8 @@ public class BarioBrosApp extends GameApplication {
                                         || player.getX() + player.getWidth() <= unusedQuestionMark.getX() + unusedQuestionMark.getWidth()
                             )
                 ) {
-
-
                     player_current_score += 10;
                     unusedQuestionMark.removeFromWorld();
-
-
-
                 }
             }
         });
@@ -282,9 +251,6 @@ public class BarioBrosApp extends GameApplication {
                 FXGL.play("getItem.wav");
                 player_current_score += 100;
                 coin.removeFromWorld();
-
-
-
             }
 
         });
@@ -333,9 +299,6 @@ public class BarioBrosApp extends GameApplication {
     }
 
     private void startTimer() {
-
-
-
         if(levelTimer != null){
             levelTimer.cancel();
         }
@@ -345,12 +308,8 @@ public class BarioBrosApp extends GameApplication {
             public void run() {
                 FXGL.play("gameOver.wav");
                 outOfTime = true;
-
-
             }
         }, 1000*60, 1000);
-
-
     }
 
     private void loginUser() {
@@ -367,16 +326,9 @@ public class BarioBrosApp extends GameApplication {
             player.removeFromWorld();
             startTimer();
             FXGL.play("gameOver.wav");
-
-
-
-
         }
 
-
         player = FXGL.getGameWorld().spawn("player", 50, 50);
-
-
 
         Viewport viewport = FXGL.getGameScene().getViewport();
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
@@ -407,11 +359,7 @@ public class BarioBrosApp extends GameApplication {
         }
     }
 
-
-
-
     public static void main(String[] args) {
         launch(args);
-
     }
 }
