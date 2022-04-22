@@ -67,6 +67,7 @@ public class PlayerControl extends Component {
 
     public void usePower() {
         if(hasPower) {
+            FXGL.play("pewpew.wav");
             FXGL.getGameWorld().spawn("flameOrb", entity.getX() + entity.getWidth(), entity.getY() - 8);
         }
     }

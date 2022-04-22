@@ -249,7 +249,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
-                FXGL.play("getItem.wav");
+                FXGL.play("smw_coin.wav");
                 player_current_score += 100;
                 coin.removeFromWorld();
             }
@@ -261,13 +261,13 @@ public class BarioBrosApp extends GameApplication {
             protected void onCollision(Entity player, Entity enemy) {
                 if (player.getBottomY() - enemy.getY() < 5) {
                     player_current_score += 100;
-                    FXGL.play("getItem.wav");
+                    FXGL.play("enemydead.wav");
                     enemy.removeFromWorld();
                     return;
                 }
-                FXGL.play("gameOver.wav");
 
                 if(player.getComponent(PlayerControl.class).hasPower) {
+                    FXGL.play("oof.wav");
                     player.getComponent(PlayerControl.class).hasPower = false;
                     immuneToDamage = true;
                     immuneTimer = new Timer();
@@ -284,6 +284,8 @@ public class BarioBrosApp extends GameApplication {
                     return;
                 }
 
+                FXGL.play("gameOver.wav");
+
                 FXGL.getGameScene().getViewport().shake(6, .2);
                 respawnPlayer();
 
@@ -293,6 +295,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.FLAMEORB, EntityType.ENEMY) {
             @Override
             protected void onCollision(Entity flameOrb, Entity enemy) {
+                FXGL.play("enemydead.wav");
                 enemy.removeFromWorld();
                 flameOrb.removeFromWorld();
             }

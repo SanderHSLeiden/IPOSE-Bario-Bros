@@ -80,7 +80,7 @@ public class BarioBrosFactory implements EntityFactory {
     public Entity newFlameOrb(SpawnData data) {
         PhysicsComponent physicsComponent = new PhysicsComponent();
         physicsComponent.setBodyType(BodyType.DYNAMIC);
-        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(0, 2), BoundingShape.circle(2)));
+        physicsComponent.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(0, 1), BoundingShape.circle(2)));
 
         return entityBuilder(data)
                 .viewWithBBox(new Circle(2, Color.RED))
