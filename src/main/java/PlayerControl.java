@@ -15,6 +15,7 @@ public class PlayerControl extends Component {
     private boolean canJump = false;
     private boolean isWalking = false;
     public boolean hasPower = false;
+    public boolean hasStarPower = false;
 
     private AnimatedTexture texture;
     private AnimationChannel animIdle, animWalk, animJump;

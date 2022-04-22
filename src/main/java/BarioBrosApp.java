@@ -46,6 +46,8 @@ public class BarioBrosApp extends GameApplication {
 
     Timer levelTimer;
     Timer immuneTimer;
+    Timer starPowerTimer;
+
     boolean immuneToDamage;
     boolean outOfTime = false;
 
@@ -158,6 +160,7 @@ public class BarioBrosApp extends GameApplication {
         FXGL.set("High score", player_current_score);
 
         if (player.getY() > currentLevelData.getHeight()) {
+            FXGL.play("gameOver.wav");
             FXGL.getGameScene().getViewport().shake(6, .2);
             respawnPlayer();
         }
@@ -232,7 +235,11 @@ public class BarioBrosApp extends GameApplication {
                 ) {
                     FXGL.play("getItem.wav");
                     unusedPowerQuestionMark.removeFromWorld();
-                    FXGL.getGameWorld().spawn("flower", unusedPowerQuestionMark.getX(), unusedPowerQuestionMark.getY() - 16);
+                    if(Math.random() < 0.5) {
+                        FXGL.getGameWorld().spawn("flower", unusedPowerQuestionMark.getX(), unusedPowerQuestionMark.getY() - 16);
+                    } else {
+                        FXGL.getGameWorld().spawn("star", unusedPowerQuestionMark.getX(), unusedPowerQuestionMark.getY() - 16);
+                    }
                 }
             }
         });
@@ -242,6 +249,25 @@ public class BarioBrosApp extends GameApplication {
             protected void onCollision(Entity player, Entity flower) {
                 FXGL.play("getItem.wav");
                 player.getComponent(PlayerControl.class).hasPower = true;
+                flower.removeFromWorld();
+            }
+        });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.STAR) {
+            @Override
+            protected void onCollision(Entity player, Entity flower) {
+                FXGL.play("starsong.wav");
+                starPowerTimer = new Timer();
+                starPowerTimer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        starPowerTimer.cancel();
+                        Entity player = FXGL.getGameWorld().getEntitiesByType(EntityType.PLAYER).get(0);
+                        player.getComponent(PlayerControl.class).hasStarPower = false;
+                    }
+                }, 1000 * 12, 1000);
+
+                player.getComponent(PlayerControl.class).hasStarPower = true;
                 flower.removeFromWorld();
             }
         });
@@ -265,6 +291,12 @@ public class BarioBrosApp extends GameApplication {
                     enemy.removeFromWorld();
                     return;
                 }
+
+                if(player.getComponent(PlayerControl.class).hasStarPower) {
+                    player_current_score += 100;
+                    FXGL.play("enemydead.wav");
+                    enemy.removeFromWorld();
+                    return;                }
 
                 if(player.getComponent(PlayerControl.class).hasPower) {
                     FXGL.play("oof.wav");

@@ -66,6 +66,16 @@ public class BarioBrosFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("star")
+    public Entity newStar(SpawnData data) {
+        return entityBuilder(data)
+                //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .viewWithBBox("star.png")
+                .with(new CollidableComponent(true))
+                .type(EntityType.STAR)
+                .build();
+    }
+
     @Spawns("flower")
     public Entity newFlower(SpawnData data) {
         return entityBuilder(data)
