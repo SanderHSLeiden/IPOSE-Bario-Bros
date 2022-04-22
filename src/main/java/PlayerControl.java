@@ -86,6 +86,7 @@ public class PlayerControl extends Component {
     public void jump() {
         if (!canJump) return;
 
+        FXGL.play("jump.wav");
         texture.setRotate(-10);
         physics.setVelocityY(-300);
     }

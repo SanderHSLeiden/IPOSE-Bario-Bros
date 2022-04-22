@@ -105,7 +105,6 @@ public class BarioBrosApp extends GameApplication {
         getInput().addAction(new UserAction("Jump") {
             @Override
             protected void onActionBegin() {
-                FXGL.play("jump.wav");
                 player.getComponent(PlayerControl.class).jump();
             }
 
